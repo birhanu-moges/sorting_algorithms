@@ -34,12 +34,15 @@ size_t lomuto_partition(int *array, size_t low, size_t high, size_t size)
 
 	pivot = array[high];
 	current = low;
-	for (i = low; i < high; i++)
+	for (i = low; i <= high; i++)
 	{
-		if (array[i] < pivot && i != current)
+		if (array[i] < pivot)
 		{
-			swap_values(array, current, i);
-			print_array(array, size);
+			if (i != current)
+			{
+				swap_values(array, current, i);
+				print_array(array, size);
+			}
 			current++;
 		}
 	}
@@ -69,8 +72,8 @@ void quicksort(int *array, size_t low, size_t high, size_t size)
 		index = lomuto_partition(array, low, high, size);
 		if (low != index)
 			quicksort(array, low, index - 1, size);
-		if (high !=  index)
-			quicksort(array, index + 1, high, size);
+		if (high != index)
+		quicksort(array, index + 1, high, size);
 	}
 }
 
